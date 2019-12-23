@@ -8,43 +8,45 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class MapWithJungle implements IPositionChangeObserver {
-
+	//Map content
 	HashMap<Vector2d, TreeSet<Animal>> animalsOnPosition;
 	private HashMap<Vector2d, Plant> plants;
+	//Map description
 	private Vector2d leftBottomCorner;
 	private Vector2d rightUpperCorner;
 	private Vector2d leftBottomCornerOfJungle;
 	private Vector2d rightUpperCornerOfJungle;
 	private int jungleArea;
 	private int area;
+	//Data for statistics
 	private int dayNumber=0;
-
-	private double avarageLifespan=0;
+	private double averageLifespan =0;
 	private int numberOfDeadAnimals=0;
 	private List<String> allGenomes = new LinkedList<String>();
-	
-	
+
+//	 		 ██████╗ ██████╗ ███╗   ██╗███████╗████████╗██████╗ ██╗   ██╗ ██████╗████████╗ ██████╗ ██████╗ ███████╗
+//			 ██╔════╝██╔═══██╗████╗  ██║██╔════╝╚══██╔══╝██╔══██╗██║   ██║██╔════╝╚══██╔══╝██╔═══██╗██╔══██╗██╔════╝
+//			 ██║     ██║   ██║██╔██╗ ██║███████╗   ██║   ██████╔╝██║   ██║██║        ██║   ██║   ██║██████╔╝███████╗
+//			 ██║     ██║   ██║██║╚██╗██║╚════██║   ██║   ██╔══██╗██║   ██║██║        ██║   ██║   ██║██╔══██╗╚════██║
+//			 ╚██████╗╚██████╔╝██║ ╚████║███████║   ██║   ██║  ██║╚██████╔╝╚██████╗   ██║   ╚██████╔╝██║  ██║███████║
+//			 ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝  ╚═════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚══════╝
+
 	public  MapWithJungle(int width, int height, float jungleRatio, int howManyAnimalsOnStart, int howManyPlantsOnStart) throws Exception
 	{
 		this.leftBottomCorner=new Vector2d(1, 1);
 		this.rightUpperCorner=new Vector2d(width, height);
-
-		Vector2d vectorGeneratingMap = rightUpperCorner.substract(leftBottomCorner);
+		Vector2d vectorGeneratingMap = rightUpperCorner.subtract(leftBottomCorner);
 		this.area=vectorGeneratingMap.x*vectorGeneratingMap.y;
-
-
 
 		this.leftBottomCornerOfJungle=this.leftBottomCorner.add(new Vector2d((int)(rightUpperCorner.x-jungleRatio*width)/2, (int)(rightUpperCorner.y-jungleRatio*height)/2));
 		this.rightUpperCornerOfJungle = this.leftBottomCornerOfJungle.add(new Vector2d((int)Math.floor(jungleRatio*width)-1, (int)Math.floor(jungleRatio*height)-1));
-
-
-
-		Vector2d vectorGeneratingJungle = rightUpperCornerOfJungle.substract(leftBottomCornerOfJungle);
+		Vector2d vectorGeneratingJungle = rightUpperCornerOfJungle.subtract(leftBottomCornerOfJungle);
 		this.jungleArea=vectorGeneratingJungle.x*vectorGeneratingJungle.y;
 
 		this.animalsOnPosition=new HashMap<Vector2d, TreeSet<Animal>>();
 		this.plants=new HashMap<Vector2d, Plant>();
 
+		//Add animals on different positions
 		while(howManyAnimalsOnStart>0)
 		{
 			Vector2d positionForNewAnimal = Vector2d.getRandomPointFromArea(leftBottomCorner, rightUpperCorner);
@@ -58,31 +60,30 @@ public class MapWithJungle implements IPositionChangeObserver {
 
 
 		}
-
+		//Add plants to jungle and step
 		for(int i=0; i<howManyPlantsOnStart/2; i++)
 		{
 			addPlants();
 		}
 
 	}
+//
+//		██████╗  █████╗ ██╗██╗     ██╗   ██╗    ██████╗  ██████╗ ██╗   ██╗████████╗██╗███╗   ██╗███████╗
+//		██╔══██╗██╔══██╗██║██║     ╚██╗ ██╔╝    ██╔══██╗██╔═══██╗██║   ██║╚══██╔══╝██║████╗  ██║██╔════╝
+//		██║  ██║███████║██║██║      ╚████╔╝     ██████╔╝██║   ██║██║   ██║   ██║   ██║██╔██╗ ██║█████╗
+//		██║  ██║██╔══██║██║██║       ╚██╔╝      ██╔══██╗██║   ██║██║   ██║   ██║   ██║██║╚██╗██║██╔══╝
+//		██████╔╝██║  ██║██║███████╗   ██║       ██║  ██║╚██████╔╝╚██████╔╝   ██║   ██║██║ ╚████║███████╗
+//		╚═════╝ ╚═╝  ╚═╝╚═╝╚══════╝   ╚═╝       ╚═╝  ╚═╝ ╚═════╝  ╚═════╝    ╚═╝   ╚═╝╚═╝  ╚═══╝╚══════╝
+	public synchronized void nextDay() throws Exception
+	{
+		removeDeadAnimals();
+		moveAnimals();
+		feedAnimals();
+		handleProcreation();
+		addPlants();
+		dayNumber++;
 
-	
-	public synchronized Animal getAnimalAtPosition(Vector2d position)
-	{
-		return animalsOnPosition.get(position).first();
 	}
-	public synchronized boolean canMoveTo(Vector2d position)
-	{
-		if(position.x>rightUpperCorner.x || position.y>rightUpperCorner.y || position.x<leftBottomCorner.x || position.y<leftBottomCorner.y)return false;
-		return true;
-	}
-	
-	public synchronized boolean isOccupiedByAnimal(Vector2d position)
-	{
-		if(animalsOnPosition.containsKey(position))return true;
-		return false;
-	}
-	
 
 	private synchronized void removeDeadAnimals()
 	{
@@ -97,10 +98,10 @@ public class MapWithJungle implements IPositionChangeObserver {
 				{
 					it.remove();
 
-					double buffer=avarageLifespan*numberOfDeadAnimals;
+					double buffer= averageLifespan *numberOfDeadAnimals;
 					buffer+=animal.howManyDaysAlive;
 					numberOfDeadAnimals++;
-					avarageLifespan=buffer/numberOfDeadAnimals;
+					averageLifespan =buffer/numberOfDeadAnimals;
 					animal.removeObserver(this);
 					allGenomes.remove(animal.getGenome());
 				}
@@ -109,38 +110,155 @@ public class MapWithJungle implements IPositionChangeObserver {
 
 
 			if(animalsOnPosition.get(position).size()<=0)toRemove.add(position);
-			
+
 		}
 		for(Vector2d position: toRemove)
 		{
 			animalsOnPosition.remove(position);
 		}
-
-
 	}
 
-	public int getNumberOfAliveAnimals()
+	private synchronized void moveAnimals()
 	{
-		int counter=0;
+		@SuppressWarnings("unchecked")
+		HashMap<Vector2d, TreeSet<Animal>> animalsCopy = (HashMap<Vector2d, TreeSet<Animal>>) animalsOnPosition.clone();
+
+		for(Vector2d position: animalsCopy.keySet())
+		{
+			Iterator<Animal> it = ((TreeSet<Animal>)(animalsCopy.get(position).clone())).iterator();
+			while(it.hasNext())
+			{
+				Animal animal =  it.next();
+				animal.move(MoveDirection.FORWARD);
+			}
+
+		}
+	}
+
+	private synchronized void feedAnimals()
+	{
+
 		for(Vector2d position: animalsOnPosition.keySet())
 		{
-			counter+=animalsOnPosition.get(position).size();
+			if(plants.containsKey(position))
+			{
+				Iterator<Animal> it = animalsOnPosition.get(position).iterator();
+				int maximalEnergy=-1;
+				int howManyAnimalsToShare=0;
+
+				while(it.hasNext())
+				{
+
+					Animal animal = it.next();
+					if(maximalEnergy==-1)maximalEnergy=animal.getEnergy();
+					else if(maximalEnergy!=animal.getEnergy())break;
+					howManyAnimalsToShare++;
+				}
+
+				Plant plant = plants.get(position);
+
+				int energyPerAnimal = Parameters.PLANT_ENERGY/howManyAnimalsToShare;
+				it = animalsOnPosition.get(position).iterator();
+				for(int i=0; i<howManyAnimalsToShare; i++)
+				{
+					Animal animal = it.next();
+					animal.fillEnergy(energyPerAnimal);
+				}
+				plants.remove(position);
+
+			}
 		}
-		return counter;
 	}
 
-	public int getNumberOfPlants()
+	private synchronized void handleProcreation() throws Exception
 	{
+		List<Animal> animalsToAdd = new LinkedList<>();
+		for(Vector2d position: animalsOnPosition.keySet())
+		{
+			if(animalsOnPosition.get(position).size()>=2)
+			{
+				Iterator<Animal> it = animalsOnPosition.get(position).iterator();
+				Animal firstParent = it.next();
+				Animal secondParent=it.next();
 
+				if(secondParent.getEnergy()>=Parameters.START_ENERGY*0.5)
+				{
+					Animal child = firstParent.procreate(secondParent);
+					animalsToAdd.add(child);
+					animalsToAdd.add(firstParent);
+					animalsToAdd.add(secondParent);
+					animalsOnPosition.remove(firstParent);
+					animalsOnPosition.remove(secondParent);
+					child.addObserver(this);
+				}
+			}
+		}
+
+		for(Animal a: animalsToAdd)
+		{
+			insertAnimal(a);
+
+		}
+	}
+
+	private synchronized void addPlants()
+	{
+		Vector2d placeInJungle;
+		int numberOfTries=0;
+		do
+		{
+			placeInJungle = Vector2d.getRandomPointFromArea(leftBottomCornerOfJungle, rightUpperCornerOfJungle);
+			numberOfTries++;
+		}while((plants.containsKey(placeInJungle)||isOccupiedByAnimal(placeInJungle)) && numberOfTries<=jungleArea );
+
+
+		plants.put(placeInJungle, new Plant(placeInJungle));
+		Vector2d placeOutsideTheJungle;
+
+		numberOfTries=0;
+		do
+		{
+			placeOutsideTheJungle = Vector2d.getRandomPointFromArea(leftBottomCorner, rightUpperCorner);
+			numberOfTries++;
+		}while((placeOutsideTheJungle.isInside(leftBottomCornerOfJungle, rightUpperCornerOfJungle)
+				||plants.containsKey(placeOutsideTheJungle)
+				||isOccupiedByAnimal(placeOutsideTheJungle))
+				&&  numberOfTries<=area
+		);
+
+		plants.put(placeOutsideTheJungle, new Plant(placeOutsideTheJungle));
+
+
+	}
+//		███████╗████████╗ █████╗ ████████╗██╗███████╗████████╗██╗ ██████╗███████╗    ███╗   ███╗███████╗████████╗██╗  ██╗ ██████╗ ██████╗ ███████╗
+//		██╔════╝╚══██╔══╝██╔══██╗╚══██╔══╝██║██╔════╝╚══██╔══╝██║██╔════╝██╔════╝    ████╗ ████║██╔════╝╚══██╔══╝██║  ██║██╔═══██╗██╔══██╗██╔════╝
+//		███████╗   ██║   ███████║   ██║   ██║███████╗   ██║   ██║██║     ███████╗    ██╔████╔██║█████╗     ██║   ███████║██║   ██║██║  ██║███████╗
+//		╚════██║   ██║   ██╔══██║   ██║   ██║╚════██║   ██║   ██║██║     ╚════██║    ██║╚██╔╝██║██╔══╝     ██║   ██╔══██║██║   ██║██║  ██║╚════██║
+//		███████║   ██║   ██║  ██║   ██║   ██║███████║   ██║   ██║╚██████╗███████║    ██║ ╚═╝ ██║███████╗   ██║   ██║  ██║╚██████╔╝██████╔╝███████║
+//		╚══════╝   ╚═╝   ╚═╝  ╚═╝   ╚═╝   ╚═╝╚══════╝   ╚═╝   ╚═╝ ╚═════╝╚══════╝    ╚═╝     ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝
+
+
+	public synchronized int howManyAnimals()
+	{
+		return this.animalsOnPosition.keySet().size();
+	}
+
+	public synchronized int howManyPlants()
+	{
 		return this.plants.size();
 	}
 
-	public double getAvarageLifespan()
+	public synchronized int whichDay()
 	{
-		return this.avarageLifespan;
+		return this.dayNumber;
 	}
 
-	public synchronized double getAvarageNumberOfChildren()
+	public double getAverageLifespan()
+	{
+		return this.averageLifespan;
+	}
+
+	public synchronized double getAverageNumberOfChildren()
 	{
 		int numberOfChildren=0;
 		for(Vector2d position: animalsOnPosition.keySet())
@@ -153,7 +271,7 @@ public class MapWithJungle implements IPositionChangeObserver {
 		return numberOfChildren*1.0/howManyAnimals();
 	}
 
-	public synchronized  double getAvarageEnergy()
+	public synchronized  double getAverageEnergy()
 	{
 		double energy=0;
 		for(Vector2d position: animalsOnPosition.keySet())
@@ -182,144 +300,30 @@ public class MapWithJungle implements IPositionChangeObserver {
 		}
 		return maxGenome;
 	}
+//	         ██████╗ ████████╗██╗  ██╗███████╗██████╗     ███╗   ███╗███████╗████████╗██╗  ██╗ ██████╗ ██████╗ ███████╗
+//			 ██╔═══██╗╚══██╔══╝██║  ██║██╔════╝██╔══██╗    ████╗ ████║██╔════╝╚══██╔══╝██║  ██║██╔═══██╗██╔══██╗██╔════╝
+//			 ██║   ██║   ██║   ███████║█████╗  ██████╔╝    ██╔████╔██║█████╗     ██║   ███████║██║   ██║██║  ██║███████╗
+//			 ██║   ██║   ██║   ██╔══██║██╔══╝  ██╔══██╗    ██║╚██╔╝██║██╔══╝     ██║   ██╔══██║██║   ██║██║  ██║╚════██║
+//			 ╚██████╔╝   ██║   ██║  ██║███████╗██║  ██║    ██║ ╚═╝ ██║███████╗   ██║   ██║  ██║╚██████╔╝██████╔╝███████║
+//			 ╚═════╝    ╚═╝   ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝    ╚═╝     ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝
 
-
-	private static HashMap<Vector2d, TreeSet<Animal>>  clone(HashMap<Vector2d, TreeSet<Animal>> hashMap)
+	public synchronized Animal getAnimalAtPosition(Vector2d position)
 	{
-		HashMap<Vector2d, TreeSet<Animal>> result = new HashMap<Vector2d, TreeSet<Animal>>();
-		for(Vector2d v: hashMap.keySet())
-		{
-			result.put(v, hashMap.get(v));
-
-		}
-		return result;
+		return animalsOnPosition.get(position).first();
 	}
 
-	private synchronized void moveAnimals()
+	public synchronized boolean canMoveTo(Vector2d position)
 	{
-		@SuppressWarnings("unchecked")
-		HashMap<Vector2d, TreeSet<Animal>> animalsCopy = (HashMap<Vector2d, TreeSet<Animal>>) animalsOnPosition.clone();
-		
-		for(Vector2d position: animalsCopy.keySet())
-		{
-			Iterator<Animal> it = ((TreeSet<Animal>)(animalsCopy.get(position).clone())).iterator();
-			while(it.hasNext())
-			{
-				Animal animal =  it.next();
-				animal.move(MoveDirection.FORWARD);
-			}
-			
-		}
+		if(position.x>rightUpperCorner.x || position.y>rightUpperCorner.y || position.x<leftBottomCorner.x || position.y<leftBottomCorner.y)return false;
+		return true;
 	}
-	
-	private synchronized void feedAnimals()
+
+	public synchronized boolean isOccupiedByAnimal(Vector2d position)
 	{
-
-		for(Vector2d position: animalsOnPosition.keySet())
-		{
-			if(plants.containsKey(position))
-			{
-				Iterator<Animal> it = animalsOnPosition.get(position).iterator();
-				int maximalEnergy=-1;
-				int howManyAnimalsToShare=0;
-				
-				while(it.hasNext())
-				{
-					
-					Animal animal = it.next();
-					if(maximalEnergy==-1)maximalEnergy=animal.getEnergy();
-					else if(maximalEnergy!=animal.getEnergy())break;
-					howManyAnimalsToShare++;
-				}
-				
-				Plant plant = plants.get(position);
-				
-				int energyPerAnimal = Parameters.PLANT_ENERGY/howManyAnimalsToShare;
-				it = animalsOnPosition.get(position).iterator();
-				for(int i=0; i<howManyAnimalsToShare; i++)
-				{
-					Animal animal = it.next();
-					animal.fillEnergy(energyPerAnimal);
-				}
-				plants.remove(position);
-				
-			}
-		}
+		if(animalsOnPosition.containsKey(position))return true;
+		return false;
 	}
-	
-	private synchronized void handleProcreation() throws Exception
-	{
-		List<Animal> animalsToAdd = new LinkedList<>();
-		for(Vector2d position: animalsOnPosition.keySet())
-		{
-			if(animalsOnPosition.get(position).size()>=2)
-			{
-					Iterator<Animal> it = animalsOnPosition.get(position).iterator();
-					Animal firstParent = it.next();
-					Animal secondParent=it.next();
 
-					if(secondParent.getEnergy()>=Parameters.START_ENERGY*0.5)
-					{
-						Animal child = firstParent.procreate(secondParent);
-						animalsToAdd.add(child);
-						child.addObserver(this);
-				}
-			}
-		}
-
-		for(Animal a: animalsToAdd)
-		{
-			insertAnimal(a);
-
-		}
-
-
-		
-		
-		
-	}
-	
-	private synchronized void addPlants()
-	{
-		Vector2d placeInJungle;
-		int numberOfTries=0;
-		do
-		{
-			 placeInJungle = Vector2d.getRandomPointFromArea(leftBottomCornerOfJungle, rightUpperCornerOfJungle);
-			 numberOfTries++;
-		}while((plants.containsKey(placeInJungle)||isOccupiedByAnimal(placeInJungle)) && numberOfTries<=jungleArea );
-		
-		
-		plants.put(placeInJungle, new Plant(placeInJungle));
-		Vector2d placeOutsideTheJungle;
-		
-		numberOfTries=0;
-		do
-		{
-			placeOutsideTheJungle = Vector2d.getRandomPointFromArea(leftBottomCorner, rightUpperCorner);
-			numberOfTries++;
-		}while((placeOutsideTheJungle.isInside(leftBottomCornerOfJungle, rightUpperCornerOfJungle)
-				||plants.containsKey(placeOutsideTheJungle)
-				||isOccupiedByAnimal(placeOutsideTheJungle))
-				&&  numberOfTries<=area
-			);
-		
-		plants.put(placeOutsideTheJungle, new Plant(placeOutsideTheJungle));
-		
-		
-	}
-	
-	public synchronized void nextDay() throws Exception
-	{
-		removeDeadAnimals();
-		moveAnimals();
-		feedAnimals();
-		handleProcreation();
-		addPlants();
-		dayNumber++;
-			
-	}
-	
 	public synchronized Vector2d getFreePositionInNeighbourhood(Vector2d position)
 	{
 		int howManyTries=0;
@@ -329,72 +333,50 @@ public class MapWithJungle implements IPositionChangeObserver {
 			neighbourhood = Vector2d.getRandomPointInNeighbourhood(position);
 			howManyTries++;
 		}while(isOccupiedByAnimal(neighbourhood)==true && howManyTries<=8);
-			
-			return neighbourhood;
+
+		return neighbourhood;
 	}
-	
-	
+
 	private synchronized void insertAnimal(Animal animal)
 	{
 		SortedSet<Animal> set = this.animalsOnPosition.get(animal.getPosition());
-		
+
 		if(set==null)
 		{
-			    TreeSet<Animal> treeSet = new TreeSet<Animal>();
-			    treeSet.add(animal);
-				animalsOnPosition.put(animal.getPosition(), treeSet);
+			TreeSet<Animal> treeSet = new TreeSet<Animal>();
+			treeSet.add(animal);
+			animalsOnPosition.put(animal.getPosition(), treeSet);
 		}
-		else 
+		else
 		{
 			set.add(animal);
 		}
 
 		allGenomes.add(animal.getGenome());
-		
+
 	}
-	
+
 
 	@Override
 	public synchronized void positionChanged(IMapElement element, Vector2d oldPosition)
 	{
-		
-			Iterator<Animal> it = animalsOnPosition.get(oldPosition).iterator();
-			while(it.hasNext())
+
+		Iterator<Animal> it = animalsOnPosition.get(oldPosition).iterator();
+		while(it.hasNext())
+		{
+			Animal animal = (Animal) it.next();
+			if(animal.equals((Animal)element))
 			{
-				Animal animal = (Animal) it.next();
-				if(animal.equals((Animal)element))
-				{
-					it.remove();
-					break;
-				}
+				it.remove();
+				break;
 			}
-			
-			if(animalsOnPosition.get(oldPosition).size()<=0)animalsOnPosition.remove(oldPosition);
-			
-			insertAnimal((Animal)element);
-			
+		}
 
-	}
+		if(animalsOnPosition.get(oldPosition).size()<=0)animalsOnPosition.remove(oldPosition);
 
-	public synchronized int howManyAnimals()
-	{
-
-		return this.animalsOnPosition.keySet().size();
+		insertAnimal((Animal)element);
 
 
-	}
-
-
-	public synchronized int howManyPlants()
-	{
-
-		return this.plants.size();
-
-	}
-
-	public synchronized int whichDay()
-	{
-		return this.dayNumber;
 	}
 
 	public synchronized List<IMapElement> getDrawables()
@@ -402,28 +384,19 @@ public class MapWithJungle implements IPositionChangeObserver {
 
 		List<IMapElement> result = new ArrayList<IMapElement>();
 
+		for (Vector2d position : animalsOnPosition.keySet()) {
 
+			result.add(animalsOnPosition.get(position).first());
 
+		}
 
-			for (Vector2d position : animalsOnPosition.keySet()) {
-
-				result.add(animalsOnPosition.get(position).first());
-
-			}
-
-	for(Vector2d position: plants.keySet())
+		for(Vector2d position: plants.keySet())
 		{
 			if(!animalsOnPosition.containsKey(position))
 			{
 				result.add(plants.get(position));
 			}
 		}
-
 		return result;
 	}
 }
-
-	
-	
-
-

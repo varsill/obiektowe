@@ -4,12 +4,20 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class Genome {
-	private static final int GENETIC_CODE_LENGTH = 32;
+	private static final int GENETIC_CODE_LENGTH =32;
 	private static final int OPTIONS_PER_GENE=8;
 	
 	private final int[] geneticCode;
 
-	
+// 		 ██████╗ ██████╗ ███╗   ██╗███████╗████████╗██████╗ ██╗   ██╗ ██████╗████████╗ ██████╗ ██████╗ ███████╗
+//		 ██╔════╝██╔═══██╗████╗  ██║██╔════╝╚══██╔══╝██╔══██╗██║   ██║██╔════╝╚══██╔══╝██╔═══██╗██╔══██╗██╔════╝
+//		 ██║     ██║   ██║██╔██╗ ██║███████╗   ██║   ██████╔╝██║   ██║██║        ██║   ██║   ██║██████╔╝███████╗
+//		 ██║     ██║   ██║██║╚██╗██║╚════██║   ██║   ██╔══██╗██║   ██║██║        ██║   ██║   ██║██╔══██╗╚════██║
+//		 ╚██████╗╚██████╔╝██║ ╚████║███████║   ██║   ██║  ██║╚██████╔╝╚██████╗   ██║   ╚██████╔╝██║  ██║███████║
+//		 ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝  ╚═════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚══════╝
+	 /**
+	 * creates randomly generated genome
+	 */
 	public Genome()
 	{
 		this.geneticCode=new int [GENETIC_CODE_LENGTH];
@@ -22,15 +30,13 @@ public class Genome {
 		
 		repair();
 	}
-	
-	
-	public Genome(int[] geneticCode)
-	{
-		this.geneticCode=geneticCode;
-		repair();
-	}
-	
-	
+
+
+	/**
+	 *  Creates new genome based on parents genome
+	 * @param firstParentGenome - genome of first parent
+	 * @param secondParentGenome - genome of second parent
+	 */
 	public Genome(Genome firstParentGenome, Genome secondParentGenome)
 	{
 		Random generator=new Random();
@@ -58,50 +64,26 @@ public class Genome {
 		{
 			this.geneticCode[i]=firstParentGenome.geneticCode[i];
 		}
-		
 		repair();
-		
 	}
-	
-	
+
+//	 		 ██████╗ ████████╗██╗  ██╗███████╗██████╗     ███╗   ███╗███████╗████████╗██╗  ██╗ ██████╗ ██████╗ ███████╗
+//			 ██╔═══██╗╚══██╔══╝██║  ██║██╔════╝██╔══██╗    ████╗ ████║██╔════╝╚══██╔══╝██║  ██║██╔═══██╗██╔══██╗██╔════╝
+//			 ██║   ██║   ██║   ███████║█████╗  ██████╔╝    ██╔████╔██║█████╗     ██║   ███████║██║   ██║██║  ██║███████╗
+//			 ██║   ██║   ██║   ██╔══██║██╔══╝  ██╔══██╗    ██║╚██╔╝██║██╔══╝     ██║   ██╔══██║██║   ██║██║  ██║╚════██║
+//			 ╚██████╔╝   ██║   ██║  ██║███████╗██║  ██║    ██║ ╚═╝ ██║███████╗   ██║   ██║  ██║╚██████╔╝██████╔╝███████║
+//			 ╚═════╝    ╚═╝   ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝    ╚═╝     ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝
+
+	/**
+	 *
+	 * @return how many times should an Genome owner rotate, based on its genome specification
+	 */
 	public int howManyTimesToRotate()
 	{
 		Random generator=new Random();
 		int pos = Math.abs(generator.nextInt())%GENETIC_CODE_LENGTH;
 		int gen = geneticCode[pos];
 		return gen;
-	}
-	
-	
-	private void repair()
-	{
-		
-		int[] numberOfOccurences = new int[OPTIONS_PER_GENE];
-		for(int i=0; i<OPTIONS_PER_GENE; i++)
-		{
-			numberOfOccurences[i]++;
-		}
-		
-		for(int i=0; i<OPTIONS_PER_GENE; i++)
-		{
-			if(numberOfOccurences[i]==0)
-			{
-				Random generator=new Random();
-				int pos =  Math.abs(generator.nextInt())%GENETIC_CODE_LENGTH;
-				
-				while(numberOfOccurences[geneticCode[pos]]<=1)
-				{
-					pos = Math.abs(generator.nextInt())%GENETIC_CODE_LENGTH;
-				}
-				
-				numberOfOccurences[geneticCode[pos]]--;
-				numberOfOccurences[i]++;
-				geneticCode[pos]=i;
-			}
-		}
-		
-		Arrays.sort(this.geneticCode);
-		
 	}
 
 	@Override
@@ -113,5 +95,34 @@ public class Genome {
 			stringBuilder.append(geneticCode[i]);
 		}
 		return stringBuilder.toString();
+	}
+
+	private void repair()
+	{
+
+		int[] numberOfOccurences = new int[OPTIONS_PER_GENE];
+		for(int i=0; i<OPTIONS_PER_GENE; i++)
+		{
+			numberOfOccurences[i]++;
+		}
+
+		for(int i=0; i<OPTIONS_PER_GENE; i++)
+		{
+			if(numberOfOccurences[i]==0)
+			{
+				Random generator=new Random();
+				int pos =  Math.abs(generator.nextInt())%GENETIC_CODE_LENGTH;
+
+				while(numberOfOccurences[geneticCode[pos]]<=1)
+				{
+					pos = Math.abs(generator.nextInt())%GENETIC_CODE_LENGTH;
+				}
+
+				numberOfOccurences[geneticCode[pos]]--;
+				numberOfOccurences[i]++;
+				geneticCode[pos]=i;
+			}
+		}
+		Arrays.sort(this.geneticCode);
 	}
 }

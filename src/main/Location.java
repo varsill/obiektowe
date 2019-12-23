@@ -9,11 +9,18 @@ import java.util.Random;
 public class Location {
 	private MapDirection orientation;
 	private Vector2d position;
-	
+
+
 	public Location(Vector2d initialPosition)
 	{
 		this.position=initialPosition;
 		getRandomOrientation();
+	}
+
+	public Location(Vector2d initialPosition, MapDirection initialOrientation)
+	{
+		this.position=initialPosition;
+		this.orientation=initialOrientation;
 	}
 	
 	
@@ -29,7 +36,7 @@ public class Location {
 	{
 		return new Vector2d(this.position.x, this.position.y);
 	}
-	
+
 	public void setPosition(Vector2d position)
 	{
 		this.position=position;
@@ -39,18 +46,16 @@ public class Location {
 	{
 		return this.orientation;
 	}
-	
+
 	public void move(MoveDirection moveDirection)
 	{
 		if(moveDirection==MoveDirection.FORWARD)
 		{
 			this.position=this.position.add(this.orientation.toUnitVector());
 		}
-		else if(moveDirection==MoveDirection.BACKWARD)
-		{
-			this.position=this.position.add(this.orientation.toUnitVector().opposite());
+		else if(moveDirection==MoveDirection.BACKWARD) {
+			this.position = this.position.add(this.orientation.toUnitVector().opposite());
 		}
-		
 	}
 	
 	

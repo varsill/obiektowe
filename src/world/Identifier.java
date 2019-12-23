@@ -2,7 +2,7 @@ package world;
 
 public class Identifier extends Object {
 	
-	private Integer id_num;
+	private Integer idNumber;
 	private final IdGenerator generator;
 	//Constructors:
 	/**
@@ -11,7 +11,7 @@ public class Identifier extends Object {
 	@SuppressWarnings("unused")
 	private Identifier()
 	{
-		id_num=-1;
+		idNumber=-1;
 		generator=null;
 	} 
 	/**
@@ -30,11 +30,11 @@ public class Identifier extends Object {
 		}
 		catch(Exception e)
 		{
-			this.id_num=-1;
+			this.idNumber=-1;
 			return;//couldn't create id with given generator
 		}
 		
-		this.id_num=id;
+		this.idNumber=id;
 		
 	}
 	/**
@@ -47,7 +47,7 @@ public class Identifier extends Object {
 	public Identifier(IdGenerator generator, int x) throws Exception
 	{
 		this.generator=generator;
-		if(!generator.isOccupied(x))this.id_num=x;
+		if(!generator.isOccupied(x))this.idNumber=x;
 		else throw new Exception("Proposed id is already in use.");
 	}
 	
@@ -59,11 +59,11 @@ public class Identifier extends Object {
 	 */
 	public Integer readAsInteger()
 	{
-		if(this.id_num.equals(-1))//id_num hasn't been set
+		if(this.idNumber.equals(-1))//id_num hasn't been set
 		{
 			return null;
 		}
-		else return new Integer(this.id_num);//returning a copy because we don't want to have id_num unauthorizedly modified
+		else return new Integer(this.idNumber);//returning a copy because we don't want to have id_num unauthorizedly modified
 	}
 	
 	
@@ -72,8 +72,8 @@ public class Identifier extends Object {
 	 */
 	public void release()
 	{
-		generator.freeId(this.id_num);
-		this.id_num=new Integer(-1); 
+		generator.freeId(this.idNumber);
+		this.idNumber=new Integer(-1);
 	}
 	
 	@Override
@@ -90,13 +90,13 @@ public class Identifier extends Object {
 		
 		if(other instanceof Identifier)
 		{		
-			if(this.generator.equals( ( (Identifier) other).generator ) && this.id_num.equals(((Identifier) other).id_num) ) 
+			if(this.generator.equals( ( (Identifier) other).generator ) && this.idNumber.equals(((Identifier) other).idNumber) )
 				return true;	
 		}
 		
 		else if(other instanceof Integer)
 		{
-			if(this.id_num.equals(other)) 
+			if(this.idNumber.equals(other))
 				return true;	
 		}
 		

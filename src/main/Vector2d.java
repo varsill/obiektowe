@@ -18,54 +18,6 @@ public class Vector2d extends Object {
         return new String("("+Integer.toString(x)+","+Integer.toString(y)+")");
     }
 
-    public boolean precedes(Vector2d other)
-    {
-        if(this.x<=other.x && this.y<=other.y)return true;
-        return false;
-    }
-
-    public boolean follows(Vector2d other)
-    {
-        if(this.x>=other.x && this.y>=other.y) return true;
-        return false;
-    }
-
-    public Vector2d upperRight(Vector2d other)
-    {
-        int x, y;
-        if(this.x>=other.x)x=this.x;
-        else x=other.x;
-        if(this.y>=other.y)y=this.y;
-        else y=other.y;
-
-        return new Vector2d(x, y);
-    }
-
-    public Vector2d lowerLeft(Vector2d other)
-    {
-        int x, y;
-        if(this.x>=other.x)x=other.y;
-        else x=this.x;
-        if(this.y>=other.y)y=other.y;
-        else y=this.y;
-
-        return new Vector2d(x, y);
-    }
-
-    public Vector2d add(Vector2d other)
-    {
-        return new Vector2d(this.x+other.x, this.y+other.y);
-    }
-
-    public Vector2d substract(Vector2d other)
-    {
-        return new Vector2d(this.x-other.x, this.y-other.y);
-    }
-
-    public double length()
-    {
-        return Math.sqrt(x*x+y*y);
-    }
     @Override
     public boolean equals(Object other)
     {
@@ -73,11 +25,6 @@ public class Vector2d extends Object {
         Vector2d c = (Vector2d)other;
         if(this.x==c.x && this.y==c.y)return true;
         return false;
-    }
-
-    public Vector2d opposite()
-    {
-        return new Vector2d(-this.x, -this.y);
     }
 
     @Override
@@ -88,13 +35,52 @@ public class Vector2d extends Object {
         hash += this.y * 17;
         return hash;
     }
-    
+
+    public Vector2d add(Vector2d other)
+    {
+        return new Vector2d(this.x+other.x, this.y+other.y);
+    }
+
+    public Vector2d subtract(Vector2d other)
+    {
+        return new Vector2d(this.x-other.x, this.y-other.y);
+    }
+
+    public double length()
+    {
+        return Math.sqrt(x*x+y*y);
+    }
+
+    public Vector2d opposite()
+    {
+        return new Vector2d(-this.x, -this.y);
+    }
+
+    /**
+     *
+     * @param leftBottomCorner - left bottom corner of rectangle, which describes given area
+     * @param rightUpperCorner -  right upper corner of rectangle, which describes given area
+     * @return - true, if vector is inside given area or false if it is not
+     */
     public boolean isInside(Vector2d leftBottomCorner, Vector2d rightUpperCorner)
     {
     	if(this.x>=leftBottomCorner.x && this.x<=rightUpperCorner.x && this.y>=leftBottomCorner.y && this.y<=rightUpperCorner.y)return true;
     	return false;
     }
-    
+
+//            ███████╗████████╗ █████╗ ████████╗██╗ ██████╗    ███╗   ███╗███████╗████████╗██╗  ██╗ ██████╗ ██████╗ ███████╗
+//            ██╔════╝╚══██╔══╝██╔══██╗╚══██╔══╝██║██╔════╝    ████╗ ████║██╔════╝╚══██╔══╝██║  ██║██╔═══██╗██╔══██╗██╔════╝
+//            ███████╗   ██║   ███████║   ██║   ██║██║         ██╔████╔██║█████╗     ██║   ███████║██║   ██║██║  ██║███████╗
+//            ╚════██║   ██║   ██╔══██║   ██║   ██║██║         ██║╚██╔╝██║██╔══╝     ██║   ██╔══██║██║   ██║██║  ██║╚════██║
+//            ███████║   ██║   ██║  ██║   ██║   ██║╚██████╗    ██║ ╚═╝ ██║███████╗   ██║   ██║  ██║╚██████╔╝██████╔╝███████║
+//            ╚══════╝   ╚═╝   ╚═╝  ╚═╝   ╚═╝   ╚═╝ ╚═════╝    ╚═╝     ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝
+
+    /**
+     *
+     * @param leftBottomCorner -  left bottom corner of rectangle, which describes given area
+     * @param rightUpperCorner - right upper corner of rectangle, which describes given area
+     * @return vector representing the position in given area
+     */
     public static Vector2d getRandomPointFromArea(Vector2d leftBottomCorner, Vector2d rightUpperCorner)
     {
     	Random generator = new Random();
@@ -103,9 +89,14 @@ public class Vector2d extends Object {
     	
     	return new Vector2d(x,y);
     }
+
+    /**
+     *
+     * @param position - vector representing the position
+     * @return vector representing the position of one of cells in neighbourhood of position
+     */
     public static Vector2d getRandomPointInNeighbourhood(Vector2d position)
     {
-
     	Location location = new Location(position);
     	location.move(MoveDirection.FORWARD);
     	return location.getPosition();

@@ -36,3 +36,10 @@ Most popular genome: 00001111222233344555555566677777
 Avarage energy: 2.982142857142857
 Avarage lifespan: 20.752497225305223
 Avarage number of children: 2.0
+Day: 201
+Number of alive animals:55
+Number of plants: 6
+Most popular genome: 00000011122234445555556666777777
+Avarage energy: 2.8363636363636364
+Avarage lifespan: 25.377256317689525
+Avarage number of children: 2.8363636363636364

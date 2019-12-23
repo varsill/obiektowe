@@ -5,7 +5,7 @@ public interface IdGenerator{
 	 /** 
 	  * 
 	
-	  * @return generated Id as Integer
+	  * @return Integer representing Id which was generated
 	  * @throws Exception - when Id cannot be generated
 	  */
 	 Integer getId() throws Exception;
