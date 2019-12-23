@@ -1,5 +1,9 @@
 package main;
 
+import main.MapDirection;
+import main.MoveDirection;
+import main.Vector2d;
+
 import java.util.Random;
 
 public class Location {

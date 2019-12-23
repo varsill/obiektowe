@@ -4,7 +4,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -16,6 +15,7 @@ public class Parameters {
 	public static int MOVE_ENERGY;
 	public static int PLANT_ENERGY;
 	public static String STATISTICS_FILE_PATH="statistics.txt";
+	public static int HOW_MANY_IDS=30000;
 	
 	public static void setParameters(int mapWidth, int mapHeight, int jungleRatio,int startEnergy, int moveEnergy, int plantEnergy)
 	{
