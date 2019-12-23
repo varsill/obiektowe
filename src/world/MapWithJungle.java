@@ -150,7 +150,7 @@ public class MapWithJungle implements IPositionChangeObserver {
 				numberOfChildren+=animal.getNumberOfChildren();
 			}
 		}
-		return numberOfChildren/howManyAnimals();
+		return numberOfChildren*1.0/howManyAnimals();
 	}
 
 	public synchronized  double getAvarageEnergy()

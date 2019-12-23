@@ -62,6 +62,10 @@ public class Vector2d extends Object {
         return new Vector2d(this.x-other.x, this.y-other.y);
     }
 
+    public double length()
+    {
+        return Math.sqrt(x*x+y*y);
+    }
     @Override
     public boolean equals(Object other)
     {

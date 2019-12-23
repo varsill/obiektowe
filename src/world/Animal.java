@@ -97,16 +97,19 @@ public class Animal implements IMapElement, Comparable<Animal>{
     
     public Animal procreate(Animal partner) throws Exception
     {
-    	int energyGivenByMe = (int) (this.energy*0.25);
+    	if(this.energy<0.5*Parameters.START_ENERGY||partner.energy<0.5*Parameters.START_ENERGY)throw new Exception("Not enough energy to procreate.");
+		if(!this.getPosition().equals(partner.getPosition()))throw new Exception("Animals are not on the same position.");
+
+		int energyGivenByMe = (int) (this.energy*0.25);
     	this.useEnergy(energyGivenByMe);
     	
     	int energyGivenByPartner = (int) (partner.energy*0.25);
     	partner.useEnergy(energyGivenByPartner);
     	
     	Animal child = new Animal(this.mainMap,((MapWithJungle)this.mainMap).getFreePositionInNeighbourhood(this.getPosition()), energyGivenByMe+energyGivenByPartner);
-
     	this.numberOfChildren++;
     	partner.numberOfChildren++;
+
     	return child;
     }
     
@@ -215,6 +218,7 @@ public class Animal implements IMapElement, Comparable<Animal>{
 			@Override
 			public void freeId(Integer id)
 			{
+
 				if(id>=offset)return;
 				int index = ids.indexOf(id);
 				if(index!=-1)return;//number is already on the ids list

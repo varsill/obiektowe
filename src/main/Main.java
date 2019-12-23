@@ -19,8 +19,8 @@ public class Main
 
 
 		try {
-			MapWithJungle firstMap = new MapWithJungle(Parameters.MAP_WIDTH, Parameters.MAP_HEIGHT, (float)0.2, 10, 10000);
-			MapWithJungle secondMap =  new MapWithJungle(Parameters.MAP_WIDTH, Parameters.MAP_HEIGHT, (float)0.2, 10, 10000);
+			MapWithJungle firstMap = new MapWithJungle(Parameters.MAP_WIDTH, Parameters.MAP_HEIGHT, (float)0.2,  Parameters.HOW_MANY_ANIMALS_ON_CREATION, 1000);
+			MapWithJungle secondMap =  new MapWithJungle(Parameters.MAP_WIDTH, Parameters.MAP_HEIGHT, (float)0.2, Parameters.HOW_MANY_ANIMALS_ON_CREATION, 1000);
 			Frame frame = new Frame(firstMap, secondMap, status, 1200, 800);
 			frame.updateFrame();
 

@@ -16,6 +16,7 @@ public class Parameters {
 	public static int PLANT_ENERGY;
 	public static String STATISTICS_FILE_PATH="statistics.txt";
 	public static int HOW_MANY_IDS=30000;
+	public static int HOW_MANY_ANIMALS_ON_CREATION=100;
 	
 	public static void setParameters(int mapWidth, int mapHeight, int jungleRatio,int startEnergy, int moveEnergy, int plantEnergy)
 	{

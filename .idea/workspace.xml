@@ -2,52 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="63d9c233-313c-4019-a09c-2023841c482c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/org_junit_junit5_engine_5_0_0_ALPHA.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjektPo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ProjektPo.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/main/AbstractWorldMapElement.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/main/Animal$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/main/Animal$AnimalIdGenerator$SingletonHelper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/main/Animal$AnimalIdGenerator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/main/Animal.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/main/AnimalInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/main/Button.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/main/DrawableElement.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/main/DrawableType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/main/Frame$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/main/Frame.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/main/Genome.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/main/IMapElement.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/main/IPositionChangeObserver.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/main/IWorldMap.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/main/IdGenerator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/main/Identifier.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/main/ImagePanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/main/Location.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjektPo/main/Location.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/main/MapWithJungle.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/animal.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjektPo/main/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/main/Parameters.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjektPo/main/Parameters.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/main/Plant.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/main/SceneNumber.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjektPo/main/SceneNumber.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/main/Status.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjektPo/main/Status.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/main/World.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/AbstractWorldMapElement.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/world/Animal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DrawableElement.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DrawableType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Frame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/visualization/Frame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Genome.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/world/Genome.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/IMapElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/world/IMapElement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/IPositionChangeObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/world/IPositionChangeObserver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/IWorldMap.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/IdGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/world/IdGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Identifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/world/Identifier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/ImagePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/visualization/ImagePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Location.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/MapWithJungle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/world/MapWithJungle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/main/Vector2d.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjektPo/main/Vector2d.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/world/Animal$AnimalIdGenerator$SingletonHelper.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjektPo/world/Animal$AnimalIdGenerator$SingletonHelper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/world/Animal$AnimalIdGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjektPo/world/Animal$AnimalIdGenerator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/world/Animal.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjektPo/world/Animal.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/world/MapWithJungle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjektPo/world/MapWithJungle.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parameters.json" beforeDir="false" afterPath="$PROJECT_DIR$/parameters.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Parameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Parameters.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Plant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/world/Plant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Status.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Status.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Vector2d.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Vector2d.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/GenomeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/GenomeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/ProcreationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/ProcreationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/world/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/world/Animal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/world/MapWithJungle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/world/MapWithJungle.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,10 +65,25 @@
       <recent name="C:\Users\Luke\IdeaProjects\ProjektPo\src" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.IdTest">
+  <component name="RunManager" selected="JUnit.GenomeTest">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.Main" />
       <module name="ProjektPo" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GenomeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProjektPo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.GenomeTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -117,10 +103,43 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MapInitializationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProjektPo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.MapInitializationTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProcreationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProjektPo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.ProcreationTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.IdTest" />
+        <item itemvalue="JUnit.GenomeTest" />
+        <item itemvalue="JUnit.MapInitializationTest" />
+        <item itemvalue="JUnit.ProcreationTest" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.IdTest" />
       </list>
     </recent_temporary>
   </component>
@@ -150,6 +169,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
+    <state x="557" y="188" key="#GenomeTest" timestamp="1577098574920">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="557" y="188" key="#GenomeTest/0.0.1920.1040@0.0.1920.1040" timestamp="1577098574920" />
     <state x="414" y="176" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576874004924">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -174,22 +197,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="262" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1577062381424" />
-    <state width="1877" height="266" key="GridCell.Tab.0.bottom" timestamp="1577062601570">
+    <state width="1877" height="266" key="GridCell.Tab.0.bottom" timestamp="1577098726196">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="266" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1577062601570" />
-    <state width="1877" height="266" key="GridCell.Tab.0.center" timestamp="1577062601570">
+    <state width="1877" height="266" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1577098726196" />
+    <state width="1877" height="266" key="GridCell.Tab.0.center" timestamp="1577098726196">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="266" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1577062601570" />
-    <state width="1877" height="266" key="GridCell.Tab.0.left" timestamp="1577062601569">
+    <state width="1877" height="266" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1577098726196" />
+    <state width="1877" height="266" key="GridCell.Tab.0.left" timestamp="1577098726196">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="266" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1577062601569" />
-    <state width="1877" height="266" key="GridCell.Tab.0.right" timestamp="1577062601570">
+    <state width="1877" height="266" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1577098726196" />
+    <state width="1877" height="266" key="GridCell.Tab.0.right" timestamp="1577098726196">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="266" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1577062601570" />
+    <state width="1877" height="266" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1577098726196" />
     <state x="440" y="95" key="SettingsEditor" timestamp="1577062516985">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -221,7 +244,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/Vector2d.java</url>
-          <line>102</line>
+          <line>106</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
