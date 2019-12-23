@@ -5,6 +5,9 @@ import org.json.simple.parser.ParseException;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class World
@@ -27,7 +30,11 @@ public class World
 
 		while(true)
 		{
-			if(status.isFirstSceneOn) firstMap.nextDay();
+			if(status.isFirstSceneOn)
+			{
+
+				firstMap.nextDay();
+			}
 			if(status.isSecondSceneOn) secondMap.nextDay();
 			frame.updateFrame();
 		}
@@ -45,6 +52,32 @@ public class World
 		
 	}
 
+	public static void saveToFile(String filePath, String content) {
+		File file1 = new File(filePath);
+
+		try {
+
+			if (!file1.exists()) {
+
+				file1.createNewFile();
+			}
+
+
+			File[] files = file1.listFiles();
+
+
+			FileWriter fileWriter = new FileWriter(file1, true);
+
+			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+			bufferedWriter.write(content);
+			bufferedWriter.newLine();
+			bufferedWriter.close();
+			fileWriter.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
 
 

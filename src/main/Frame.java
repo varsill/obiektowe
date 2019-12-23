@@ -16,7 +16,7 @@ class AnimalInfo extends JPopupMenu {
         add(anItem);
         anItem = new JLabel("Genome: "+animal.getGenome());
         add(anItem);
-        anItem = new JLabel("Number of children: ");
+        anItem = new JLabel("Number of children: "+animal.getNumberOfChildren());
         add(anItem);
     }
 }
@@ -31,20 +31,23 @@ public class Frame extends JFrame  implements ActionListener {
      private FlowLayout layout;
      private Button pauseButton;
      private Button changeSceneButton;
+     private Button saveStatisticsButton;
+     private Button quitButton;
      private int cellSizeX;
      private int cellSizeY;
+     private Panel sidePanel;
+     private JLabel statisticsLabel;
 
 
      private Vector2d convertPixelPositionToMapPosition(Vector2d pixelPosition)
      {
-            return new Vector2d((int)Math.floor(pixelPosition.x/cellSizeX)+1, Parameters.MAP_HEIGHT-(int)Math.floor(pixelPosition.y/cellSizeY));
+            return new Vector2d((int)Math.ceil(pixelPosition.x/cellSizeX)+1, Parameters.MAP_HEIGHT-(int)Math.ceil(pixelPosition.y/cellSizeY));
      }
 
      private Vector2d convertPostionOnMapToPixelPostion(Vector2d positionOnMap)
      {
          return new Vector2d((positionOnMap.x-1)*cellSizeX, (Parameters.MAP_HEIGHT-positionOnMap.y)*cellSizeY);
      }
-
 
 
 
@@ -61,26 +64,46 @@ public class Frame extends JFrame  implements ActionListener {
         this.cellSizeY = (int) Math.ceil(sizeY*(1.0/Parameters.MAP_HEIGHT));
         //this.setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        layout= new FlowLayout();
-        setLayout(layout);
+        setLayout( new FlowLayout());
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setUndecorated(true);
         setResizable(false);
+
         pauseButton = new Button("Pause");
-        pauseButton.setPreferredSize(new Dimension(200, 400));
+        pauseButton.setPreferredSize(new Dimension(200, 150));
         pauseButton.addActionListener(this);
 
 
         changeSceneButton = new Button("Go to second scene");
-        changeSceneButton.setPreferredSize(new Dimension(200, 400));
+        changeSceneButton.setPreferredSize(new Dimension(200, 150));
         changeSceneButton.addActionListener(this);
 
+        saveStatisticsButton=new Button("Save statistics");
+        saveStatisticsButton.setPreferredSize(new Dimension(200, 150));
+        saveStatisticsButton.addActionListener(this);
 
-        add(pauseButton);
-        add(changeSceneButton);
+
+        quitButton=new Button("Quit");
+        quitButton.setPreferredSize(new Dimension(200, 150));
+        quitButton.addActionListener(this);
+
+        statisticsLabel=new JLabel();
+        statisticsLabel.setPreferredSize(new Dimension(200, 150));
+
+        sidePanel=new Panel();
+        sidePanel.setLayout(new GridLayout(5, 1));
+        sidePanel.add(pauseButton);
+        sidePanel.add(changeSceneButton);
+        sidePanel.add(saveStatisticsButton);
+        sidePanel.add(quitButton);
+        sidePanel.add(statisticsLabel);
+        add(sidePanel);
+
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
 
-                Vector2d mousePosition = new Vector2d(e.getX(), e.getY());
+                Vector2d mousePosition = new Vector2d(e.getX()-2, e.getY()-2);//we have to move mouse position by vector (2, 2) because that is the size of border
                 if(mousePosition.isInside(new Vector2d(0,0), new Vector2d(sizeX, sizeY))) {
                     if (status.whichSceneToDisplay == SceneNumber.FIRST_SCENE && !status.isFirstSceneOn)
                     {
@@ -99,13 +122,16 @@ public class Frame extends JFrame  implements ActionListener {
                         }
                     }
                 }
-
+             //   updateFrame();
             }
+
         });
 
         pack();
         setVisible(true);
     }
+
+
 
     public void updateFrame()
     {
@@ -113,13 +139,41 @@ public class Frame extends JFrame  implements ActionListener {
         ImagePanel imagePanel=null;
         if(status.whichSceneToDisplay==SceneNumber.FIRST_SCENE)
         {
-             imagePanel = new ImagePanel(firstMap, cellSizeX, cellSizeY);
+            imagePanel = new ImagePanel(firstMap, cellSizeX, cellSizeY);
+            sidePanel.remove(statisticsLabel);
+            statisticsLabel=new JLabel("<html>"+
+                    "Day: "+firstMap.whichDay()+"<br/>"
+                    +"Number of alive animals:"+firstMap.howManyAnimals()+"<br/>"
+                            +"Number of plants: "+firstMap.howManyPlants()+"<br/>"
+                    +"Most popular genome: "+firstMap.getMostPopularGenome()+"<br/>"
+                            +"Avarage energy: " + firstMap.getAvarageEnergy()+"<br/>"
+                            +"Avarage lifespan: "+firstMap.getAvarageLifespan()+"<br/>"
+                            +"Avarage number of children: "+firstMap.getAvarageNumberOfChildren()
+                    +"</html>"
+
+            );
+
         }
         else if(status.whichSceneToDisplay==SceneNumber.SECOND_SCENE)
         {
             imagePanel = new ImagePanel(secondMap, cellSizeX, cellSizeY);
-        }
+            sidePanel.remove(statisticsLabel);
+            statisticsLabel=new JLabel("<html>"+
+                    "Day: "+secondMap.whichDay()+"<br/>"
+                   + "Number of alive animals:"+secondMap.howManyAnimals()+"<br/>"
+                            +"Number of plants: "+secondMap.howManyPlants()+"<br/>"
+                    +"Most popular genome: "+secondMap.getMostPopularGenome()+"<br/>"
+                    +"Avarage energy: " + secondMap.getAvarageEnergy()+"<br/>"
+                    +"Avarage lifespan: "+secondMap.getAvarageLifespan()+"<br/>"
+                    +"Avarage number of children: "+secondMap.getAvarageNumberOfChildren()
+                    +"</html>"
 
+
+            );
+
+        }
+        statisticsLabel.setPreferredSize(new Dimension(400, 100));
+        sidePanel.add(statisticsLabel);
         imagePanel.setPreferredSize(new Dimension(sizeX, sizeY));
         if (oldPanel != null) remove(oldPanel);
         oldPanel = imagePanel;
@@ -164,6 +218,25 @@ public class Frame extends JFrame  implements ActionListener {
                 if(status.isFirstSceneOn) pauseButton.setText("Pause");
                 else pauseButton.setText("Continue");
             }
+        }
+        else if(e.getSource()==saveStatisticsButton)
+        {
+            MapWithJungle map;
+            if(status.whichSceneToDisplay==SceneNumber.FIRST_SCENE)map=firstMap;
+            else map=secondMap;
+            World.saveToFile(Parameters.STATISTICS_FILE_PATH,
+                    "Day: "+map.whichDay()+"\n"
+                            +"Number of alive animals:"+map.howManyAnimals()+"\n"
+                            +"Number of plants: "+map.howManyPlants()+"\n"
+                            +"Most popular genome: "+map.getMostPopularGenome()+"\n"
+                            +"Avarage energy: " + map.getAvarageEnergy()+"\n"
+                            +"Avarage lifespan: "+map.getAvarageLifespan()+"\n"
+                            +"Avarage number of children: "+map.getAvarageNumberOfChildren()
+                    );
+        }
+        else if(e.getSource()==quitButton)
+        {
+            System.exit(0);
         }
         revalidate();
         repaint();

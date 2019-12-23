@@ -1,7 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="63d9c233-313c-4019-a09c-2023841c482c" name="Default Changelist" comment="" />
+    <list default="true" id="63d9c233-313c-4019-a09c-2023841c482c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/main/Animal$AnimalIdGenerator$SingletonHelper.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjektPo/main/Animal$AnimalIdGenerator$SingletonHelper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/main/Animal$AnimalIdGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjektPo/main/Animal$AnimalIdGenerator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/main/Animal.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjektPo/main/Animal.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/main/AnimalInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjektPo/main/AnimalInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/main/Button.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjektPo/main/Button.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/main/Frame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjektPo/main/Frame$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/main/Frame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjektPo/main/Frame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/main/ImagePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjektPo/main/ImagePanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/main/MapVisualizer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/main/MapWithJungle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjektPo/main/MapWithJungle.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/main/OptionsParser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/main/Parameters.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjektPo/main/Parameters.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjektPo/main/World.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjektPo/main/World.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parameters.json" beforeDir="false" afterPath="$PROJECT_DIR$/parameters.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Animal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Frame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Frame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/ImagePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/ImagePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/MapVisualizer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/MapWithJungle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/MapWithJungle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/OptionsParser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Parameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Parameters.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/World.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,7 +39,11 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1VGJUEgtUWRGEq1o6Mhsewry6Eo" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -27,6 +55,7 @@
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
@@ -98,22 +127,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="268" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1576876357970" />
-    <state width="1877" height="266" key="GridCell.Tab.0.bottom" timestamp="1577052025983">
+    <state width="1877" height="266" key="GridCell.Tab.0.bottom" timestamp="1577060762572">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="266" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1577052025983" />
-    <state width="1877" height="266" key="GridCell.Tab.0.center" timestamp="1577052025982">
+    <state width="1877" height="266" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1577060762572" />
+    <state width="1877" height="266" key="GridCell.Tab.0.center" timestamp="1577060762572">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="266" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1577052025982" />
-    <state width="1877" height="266" key="GridCell.Tab.0.left" timestamp="1577052025982">
+    <state width="1877" height="266" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1577060762572" />
+    <state width="1877" height="266" key="GridCell.Tab.0.left" timestamp="1577060762571">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="266" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1577052025982" />
-    <state width="1877" height="266" key="GridCell.Tab.0.right" timestamp="1577052025983">
+    <state width="1877" height="266" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1577060762571" />
+    <state width="1877" height="266" key="GridCell.Tab.0.right" timestamp="1577060762572">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="266" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1577052025983" />
+    <state width="1877" height="266" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1577060762572" />
     <state x="440" y="95" key="SettingsEditor" timestamp="1576873757725">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -130,18 +159,23 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1576960291427" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1577049722688">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1577058260415">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1577049722688" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1577058260415" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/MapWithJungle.java</url>
-          <line>331</line>
+          <line>409</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Vector2d.java</url>
+          <line>104</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

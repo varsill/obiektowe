@@ -1,6 +1,7 @@
 package main;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class MapWithJungle implements IPositionChangeObserver{
 
@@ -12,7 +13,11 @@ public class MapWithJungle implements IPositionChangeObserver{
 	private Vector2d rightUpperCornerOfJungle;
 	private int jungleArea;
 	private int area;
-	
+	private int dayNumber=0;
+
+	private double avarageLifespan=0;
+	private int numberOfDeadAnimals=0;
+	private List<String> allGenomes = new LinkedList<String>();
 	
 	
 	public  MapWithJungle(int width, int height, float jungleRatio, int howManyAnimalsOnStart, int howManyPlantsOnStart) throws Exception
@@ -56,15 +61,7 @@ public class MapWithJungle implements IPositionChangeObserver{
 		}
 
 	}
-	
-	
-	public synchronized boolean place(Animal animal)
-	{
-		if(!canMoveTo(animal.getPosition())|| isOccupiedByAnimal(animal.getPosition()))return false;
-		animal.addObserver(this);
-		insertAnimal(animal);
-		return true;
-	}
+
 	
 	public synchronized Animal getAnimalAtPosition(Vector2d position)
 	{
@@ -95,8 +92,15 @@ public class MapWithJungle implements IPositionChangeObserver{
 				if(animal.getEnergy()<0)
 				{
 					it.remove();
+
+					double buffer=avarageLifespan*numberOfDeadAnimals;
+					buffer+=animal.howManyDaysAlive;
+					numberOfDeadAnimals++;
+					avarageLifespan=buffer/numberOfDeadAnimals;
 					animal.removeObserver(this);
+					allGenomes.remove(animal.getGenome());
 				}
+				else animal.howManyDaysAlive++;
 			}
 
 
@@ -110,6 +114,72 @@ public class MapWithJungle implements IPositionChangeObserver{
 
 
 	}
+
+	public int getNumberOfAliveAnimals()
+	{
+		int counter=0;
+		for(Vector2d position: animalsOnPosition.keySet())
+		{
+			counter+=animalsOnPosition.get(position).size();
+		}
+		return counter;
+	}
+
+	public int getNumberOfPlants()
+	{
+
+		return this.plants.size();
+	}
+
+	public double getAvarageLifespan()
+	{
+		return this.avarageLifespan;
+	}
+
+	public synchronized double getAvarageNumberOfChildren()
+	{
+		int numberOfChildren=0;
+		for(Vector2d position: animalsOnPosition.keySet())
+		{
+			for(Animal animal:animalsOnPosition.get(position))
+			{
+				numberOfChildren+=animal.getNumberOfChildren();
+			}
+		}
+		return numberOfChildren/howManyAnimals();
+	}
+
+	public synchronized  double getAvarageEnergy()
+	{
+		double energy=0;
+		for(Vector2d position: animalsOnPosition.keySet())
+		{
+			for(Animal animal:animalsOnPosition.get(position))
+			{
+				energy+=animal.getNumberOfChildren();
+			}
+		}
+		return energy/howManyAnimals();
+	}
+
+	public String getMostPopularGenome()
+	{
+		Map<String, Long> occurrences =
+				allGenomes.stream().collect(Collectors.groupingBy(w -> w, Collectors.counting()));
+		int maxOccurrences = 0;
+		String maxGenome="";
+		for(String string: occurrences.keySet())
+		{
+			if(occurrences.get(string)>maxOccurrences)
+			{
+				maxOccurrences=(int)occurrences.get(string).longValue();
+				maxGenome=string;
+			}
+		}
+		return maxGenome;
+	}
+
+
 	private static HashMap<Vector2d, TreeSet<Animal>>  clone(HashMap<Vector2d, TreeSet<Animal>> hashMap)
 	{
 		HashMap<Vector2d, TreeSet<Animal>> result = new HashMap<Vector2d, TreeSet<Animal>>();
@@ -242,6 +312,7 @@ public class MapWithJungle implements IPositionChangeObserver{
 		feedAnimals();
 		handleProcreation();
 		addPlants();
+		dayNumber++;
 			
 	}
 	
@@ -273,6 +344,8 @@ public class MapWithJungle implements IPositionChangeObserver{
 		{
 			set.add(animal);
 		}
+
+		allGenomes.add(animal.getGenome());
 		
 	}
 	
@@ -315,17 +388,22 @@ public class MapWithJungle implements IPositionChangeObserver{
 
 	}
 
-	public synchronized List<DrawableElement> getDrawables()
+	public synchronized int whichDay()
+	{
+		return this.dayNumber;
+	}
+
+	public synchronized List<IMapElement> getDrawables()
 	{
 
-		List<DrawableElement> result = new ArrayList<DrawableElement>();
-		HashMap<Vector2d, TreeSet<Animal>> animalsCopy;
+		List<IMapElement> result = new ArrayList<IMapElement>();
+
 
 
 
 			for (Vector2d position : animalsOnPosition.keySet()) {
 
-				result.add(new DrawableElement(position, DrawableType.ANIMAL));
+				result.add(animalsOnPosition.get(position).first());
 
 			}
 
@@ -333,7 +411,7 @@ public class MapWithJungle implements IPositionChangeObserver{
 		{
 			if(!animalsOnPosition.containsKey(position))
 			{
-				result.add(new DrawableElement(position, DrawableType.PLANT));
+				result.add(plants.get(position));
 			}
 		}
 

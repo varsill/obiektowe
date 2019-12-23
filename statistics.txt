@@ -1,0 +1,38 @@
+Number of alive animals:35
+Number of plants: 93
+Most popular genome: 00011111222244555555566666777777
+Avarage energy: 2.4571428571428573
+Avarage lifespan: 0.0
+Avarage number of children: 2.0Number of alive animals:59
+Number of plants: 4
+Most popular genome: 00001112222233344444556666677777
+Avarage energy: 2.694915254237288
+Avarage lifespan: 23.30809992429981
+Avarage number of children: 2.0Day: 24
+Number of alive animals:23
+Number of plants: 88
+Most popular genome: 00001111122222244444555666677777
+Avarage energy: 1.391304347826087
+Avarage lifespan: 0.0
+Avarage number of children: 1.0
+Day: 278
+Number of alive animals:41
+Number of plants: 9
+Most popular genome: 00001111222233344555555566677777
+Avarage energy: 2.658536585365854
+Avarage lifespan: 20.39880239520959
+Avarage number of children: 2.0
+Day: 18148
+Number of alive animals:43
+Number of plants: 5
+Most popular genome: 00000111122333333444555566777777
+Avarage energy: 3.3488372093023258
+Avarage lifespan: 23.83269093855105
+Avarage number of children: 3.0
+Day: 317
+Number of alive animals:56
+Number of plants: 8
+Most popular genome: 00001111222233344555555566677777
+Avarage energy: 2.982142857142857
+Avarage lifespan: 20.752497225305223
+Avarage number of children: 2.0

@@ -17,7 +17,8 @@ public class Animal implements IMapElement, Comparable<Animal>{
 	public final Integer id;
     private List<IPositionChangeObserver> observers;
     private MapWithJungle mainMap;
-   
+    private int numberOfChildren=0;
+	public int howManyDaysAlive=0;
     public Animal(MapWithJungle map,Vector2d initialPosition, int initialEnergy) throws Exception
     {
 
@@ -97,6 +98,9 @@ public class Animal implements IMapElement, Comparable<Animal>{
     	partner.useEnergy(energyGivenByPartner);
     	
     	Animal child = new Animal(this.mainMap,((MapWithJungle)this.mainMap).getFreePositionInNeighbourhood(this.getPosition()), energyGivenByMe+energyGivenByPartner);
+
+    	this.numberOfChildren++;
+    	partner.numberOfChildren++;
     	return child;
     }
     
@@ -136,6 +140,11 @@ public class Animal implements IMapElement, Comparable<Animal>{
 	public String getGenome()
 	{
 		return this.genome.toString();
+	}
+
+	public int getNumberOfChildren()
+	{
+		return this.numberOfChildren;
 	}
 
 

@@ -15,6 +15,7 @@ public class Parameters {
 	public static int START_ENERGY;
 	public static int MOVE_ENERGY;
 	public static int PLANT_ENERGY;
+	public static String STATISTICS_FILE_PATH="statistics.txt";
 	
 	public static void setParameters(int mapWidth, int mapHeight, int jungleRatio,int startEnergy, int moveEnergy, int plantEnergy)
 	{
